@@ -64,3 +64,6 @@ Desktop.ini
 # Uploaded user files
 uploads/
 uploads.state/
+
+# Local server process state and logs
+.run/

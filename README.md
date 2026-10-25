@@ -120,3 +120,18 @@ Use Download beside a file on Uploads for an individual download. Check files (o
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+## Start and stop the API
+
+On Linux, build the server with `npm run build:api`, then use:
+
+```sh
+./scripts/server.sh start
+./scripts/server.sh status
+./scripts/server.sh restart
+./scripts/server.sh stop
+```
+
+The script works from any directory, uses `backend/config.json`, and runs the built Go API in the background. Logs are appended to `.run/server.log`; process state is kept in `.run/server.pid`. Use the same OS user to start and stop it. To choose another config, run `SERVER_CONFIG=/absolute/path/server.json ./scripts/server.sh start`. `UPLOAD_DIR` is also passed through to the server.
+
+This controls the API only; Nginx serves the production frontend separately. For frontend development, use `npm run dev`. The script manages only the process it started and does not provide automatic restarts or boot startup; use systemd for those.
