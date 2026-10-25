@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My website</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav aria-label="Main navigation">
+        <a class="brand" href="#main">My website</a>
+        <a href="#main" data-screen="main">Main</a>
+        <a href="#uploads" data-screen="uploads">Uploads</a>
+        <a href="#videos" data-screen="videos">Videos</a>
+      </nav>
+    </header>
+    <main>
+      <section id="main-screen" aria-labelledby="main-title">
+      <p class="eyebrow">TypeScript + Go + other stuff</p>
+      <h1 id="main-title">Build something interactive.</h1>
+      <p>Your frontend and API are ready to connect.</p>
+      <button id="check-api" type="button">Check API connection</button>
+      <p id="status" role="status" aria-live="polite">Click to check the Go backend.</p>
+      </section>
+      <section id="uploads-screen" aria-labelledby="uploads-title" hidden>
+        <p class="eyebrow">File uploads</p>
+        <h1 id="uploads-title">Upload your files.</h1>
+        <p>Select one or more files to save on the server. Large video files are supported. Upload time depends on your connection and file size.</p>
+        <p id="disk-space" class="disk-space" role="status" aria-live="polite">Loading disk space…</p>
+        <form id="upload-form">
+          <p class="drop-hint">Drop files anywhere on this page to upload to the current folder, or choose files below.</p>
+          <label for="files">Choose files</label>
+          <input id="files" name="files" type="file" multiple required aria-describedby="upload-help" />
+          <p id="upload-destination">Uploading to: /</p>
+          <p id="upload-help">Files are stored privately on this server; they are not published as web links.</p>
+          <button id="upload-button" type="submit">Upload files</button>
+        </form>
+        <p id="upload-status" role="status" aria-live="polite"></p>
+        <ul id="upload-results" aria-label="Upload results"></ul>
+        <section class="file-browser" aria-labelledby="files-title">
+          <div class="file-heading">
+            <h2 id="files-title">Uploaded files</h2>
+          </div>
+          <p>Open a folder below to browse it and upload there. Deleting a file permanently removes it from the server.</p>
+          <div class="file-toolbar" role="group" aria-label="Folder controls">
+            <button id="parent-folder" type="button" aria-label="Back to parent folder" disabled>← Back</button>
+            <p id="current-folder">Current folder: /</p>
+            <button id="refresh-files" type="button">Refresh</button>
+            <button id="new-folder" type="button">New folder</button>
+          </div>
+          <button id="download-selected" type="button" disabled>Download selected as ZIP (0)</button>
+          <p id="files-status" role="status" aria-live="polite"></p>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th scope="col"><input id="select-all-files" type="checkbox" aria-label="Select all files in this folder" /></th><th scope="col">Name</th><th scope="col">Size</th><th scope="col">Modified</th><th scope="col">Actions</th></tr></thead>
+              <tbody id="file-list"></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+      <section id="videos-screen" aria-labelledby="videos-title" hidden>
+        <p class="eyebrow">Video library</p>
+        <h1 id="videos-title">Stream your videos.</h1>
+        <p>Browse uploaded folders and select videos to build a playlist. Playback depends on your browser’s support for the video’s format and codecs.</p>
+        <div class="file-toolbar" role="group" aria-label="Video folder controls">
+          <button id="video-back" type="button" disabled>← Back</button>
+          <p id="video-folder">Current folder: /</p>
+          <button id="video-refresh" type="button">Refresh</button>
+        </div>
+        <p id="video-status" role="status" aria-live="polite"></p>
+        <ul id="video-list" class="video-list" aria-label="Video files and folders"></ul>
+        <div class="file-toolbar">
+          <button id="play-selected" type="button" disabled>Play selected</button>
+          <button id="clear-videos" type="button" disabled>Clear selection</button>
+          <span id="video-count">0 selected</span>
+        </div>
+        <p id="selection-status" role="status">Selections are saved on the server and shared across browsers and devices.</p>
+        <p id="now-playing" role="status"></p>
+        <div class="player-size-controls" role="group" aria-label="Video width as a percentage of the window">
+          <span>Video width</span>
+          <button type="button" data-player-size="50" aria-pressed="false">50%</button>
+          <button type="button" data-player-size="75" aria-pressed="true">75%</button>
+          <button type="button" data-player-size="100" aria-pressed="false">100%</button>
+        </div>
+        <div id="video-frame">
+          <video id="video-player" controls playsinline preload="metadata" hidden></video>
+        </div>
+        <div id="media-track-controls">
+          <label for="audio-track">Audio track</label>
+          <select id="audio-track" disabled><option value="">Original audio</option></select>
+          <label for="subtitle-track">Subtitles</label>
+          <select id="subtitle-track" disabled><option value="">Off</option></select>
+          <p id="media-track-status" role="status">Use Play selected or Play here to load audio and subtitle tracks in this player. Stream links open a standalone player.</p>
+        </div>
+        <ol id="video-playlist" aria-label="Selected videos"></ol>
+        <p>Each selected video has a stream link you can open or copy for another player. Other devices need network access to this server.</p>
+      </section>
+    </main>
+    <dialog id="folder-dialog" aria-labelledby="folder-dialog-title">
+      <form id="folder-form">
+        <h2 id="folder-dialog-title">Create a new folder</h2>
+        <p id="folder-location"></p>
+        <label for="folder-name">Folder name</label>
+        <input id="folder-name" type="text" required maxlength="255" autofocus />
+        <p id="folder-error" role="alert"></p>
+        <div class="dialog-actions">
+          <button id="cancel-folder" class="secondary-button" type="button">Cancel</button>
+          <button id="create-folder" type="submit">Create folder</button>
+        </div>
+      </form>
+    </dialog>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
