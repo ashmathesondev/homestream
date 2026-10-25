@@ -88,6 +88,8 @@ dialog h2 { margin-top: 0; }
 .file-actions > * + * { margin-left: .75rem; }
 #download-selected { margin-top: 1rem; }
 
-.disk-space { padding: 1rem; border: 1px solid #456078; border-radius: .75rem; background: #142233; }
+.uploads-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.uploads-heading .eyebrow { flex-shrink: 0; text-align: left; }
+.disk-space { margin-left: auto; text-align: right; font-size: .85rem; padding: .5rem .75rem; border: 1px solid #456078; border-radius: .75rem; background: #142233; }
 .disk-space.warning { color: #ffd6a3; border-color: #f59e42; background: #452b13; }
 .disk-space.critical { color: #ffd4d0; border-color: #f87171; background: #481e25; }

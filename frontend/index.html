@@ -23,10 +23,12 @@
       <p id="status" role="status" aria-live="polite">Click to check the Go backend.</p>
       </section>
       <section id="uploads-screen" aria-labelledby="uploads-title" hidden>
-        <p class="eyebrow">File uploads</p>
+        <div class="uploads-heading">
+          <p class="eyebrow">File uploads</p>
+          <p id="disk-space" class="disk-space" role="status" aria-live="polite">Loading disk space…</p>
+        </div>
         <h1 id="uploads-title">Upload your files.</h1>
         <p>Select one or more files to save on the server. Large video files are supported. Upload time depends on your connection and file size.</p>
-        <p id="disk-space" class="disk-space" role="status" aria-live="polite">Loading disk space…</p>
         <form id="upload-form">
           <p class="drop-hint">Drop files anywhere on this page to upload to the current folder, or choose files below.</p>
           <label for="files">Choose files</label>
